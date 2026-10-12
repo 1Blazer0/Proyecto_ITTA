@@ -82,6 +82,23 @@ def opciones(interfaz):
         opcion = tk.Label(interfaz, text=texto, font=("Arial", 30, "bold"))
         opcion.place(x=0,y=y)
         y +=50
+def mostrar_lista_interfaz(lista_tareas):
+    root = tk.Tk()
+    root.title("Lista de tareas")
+    root.geometry("600x600")
+    contador = 1
+    y=0
+    if len(lista_tareas) > 15:
+        for tarea in lista_tareas:
+            tarea_label = tk.Label(root, text=f"{contador}. {tarea}", font=("Arial", 10))
+            tarea_label.place(x=0,y=y)
+            contador += 1
+            y += 20
+    for tarea in lista_tareas:
+        tarea_label = tk.Label(root, text=f"{contador}. {tarea}", font=("Arial", 14))
+        tarea_label.place(x=0,y=y)
+        contador += 1
+        y += 30
 if __name__ == "__main__":
     interfaz = tk.Tk()
     ventana(interfaz)

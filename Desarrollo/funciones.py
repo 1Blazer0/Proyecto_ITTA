@@ -2,7 +2,9 @@ import json
 import datetime
 lista_tarea = []
 lista_guardada = []
-def mostrar_lista():
+def mostrar_lista(lista_interfaz=None):
+    if lista_interfaz:
+        lista_interfaz(lista_tarea)
     contador = 1
     for tarea in lista_tarea:
         print(f"{contador}. {tarea}")

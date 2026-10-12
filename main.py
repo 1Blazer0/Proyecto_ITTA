@@ -14,7 +14,7 @@ while True:
                 print("No hay nada en la lista todavia!")
                 interfaz.alerta_vacia()
             else:
-                funciones.mostrar_lista()
+                funciones.mostrar_lista(interfaz.mostrar_lista_interfaz)
         elif eleccion == 2:
             funciones.crear_tarea(interfaz.tarea_repetida)
         elif eleccion == 3:

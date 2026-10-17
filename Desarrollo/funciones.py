@@ -1,9 +1,8 @@
 import json
 import datetime
 import smtplib
-form email.mime.text import MIMEText as text
+from email.mime.text import MIMEText as text
 from email.mime.multipart import MIMEMultipart as multi
-from credentials import *
 lista_tarea = []
 lista_guardada = []
 def mostrar_lista(lista_interfaz=None):
@@ -124,7 +123,7 @@ def enviar_correo(destinatario=None, mensaje=None):
         msg['To'] = destinatario
         msg['Subject'] = "Lista de tareas"
         msg.attach(text(mensaje, 'plain'))
-        co = zfzm jzvd vuji hsmd
+        co = "zfzm jzvd vuji hsmd"
         try:
             server = smtplib.SMTP(servidor_smtp, puerto_smtp)
             server.starttls()

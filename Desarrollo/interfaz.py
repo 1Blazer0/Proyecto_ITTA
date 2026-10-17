@@ -99,6 +99,7 @@ def mostrar_lista_interfaz(lista_tareas):
         tarea_label.place(x=0,y=y)
         contador += 1
         y += 30
+    root.destroy()
 if __name__ == "__main__":
     interfaz = tk.Tk()
     ventana(interfaz)

@@ -1,5 +1,9 @@
 import json
 import datetime
+import smtplib
+form email.mime.text import MIMEText as text
+from email.mime.multipart import MIMEMultipart as multi
+from credentials import *
 lista_tarea = []
 lista_guardada = []
 def mostrar_lista(lista_interfaz=None):
@@ -97,3 +101,51 @@ def guardar_lista_diferente(alerta_oportunidades=None,msj_guardado=None):
         else:
             print("Cometio muchos errores!\nCerrando sin guardar...")
             break
+def pedir_correo():
+    while True:
+        global destinatario
+        destinatario = input("Ingrese el correo electronico que desea registrar: ")
+        if "@" in destinatario and "." in destinatario:
+            break
+        else:
+            print("Correo invalido. Intente nuevamente.")
+def mensaje_correo():
+    mensaje = "Su lista de tareas es la siguiente:\n\n"
+    for tarea in lista_tarea:
+        mensaje += f"- {tarea}\n"
+    return mensaje
+def enviar_correo(destinatario=None, asunto=None, mensaje=None):
+    servidor_smtp = "smtp.gmail.com"
+    puerto_smtp = 587
+    msg = multi()
+    remi = "martinniewolski@gmail.com"
+    msg['From'] = remi
+    msg['To'] = destinatario
+    msg['Subject'] = "Lista de tareas"
+    msg.attach(text(mensaje, 'plain'))
+    co = zfzm jzvd vuji hsmd
+    try:
+        server = smtplib.SMTP(servidor_smtp, puerto_smtp)
+        server.starttls()
+        server.login(remi, co)
+        server.send_message(msg)
+        print("Correo enviado exitosamente.")
+    except Exception as e:
+        print(f"Error al enviar el correo: {e}")
+    finally:
+        server.quit()
+def guardar_correo():
+    try:
+        global destinatario
+        with open("correo.txt", "w") as archivo:
+            json.dump(destinatario, archivo)
+    except Exception as e:
+        print(f"Error al guardar el correo: {e}")
+def cargar_correo():
+    try:
+        global destinatario
+        with open("correo.txt", "r") as archivo:
+            destinatario = json.load(archivo)
+    except Exception as e:
+        print(f"Error al cargar el correo: {e}")
+        destinatario = None

@@ -100,13 +100,3 @@ def mostrar_lista_interfaz(lista_tareas):
         contador += 1
         y += 30
     root.destroy()
-if __name__ == "__main__":
-    interfaz = tk.Tk()
-    ventana(interfaz)
-    msj_bienvenida()
-    opciones(interfaz)
-    alerta_vacia()
-    alerta_fuera_rango()
-    alerta_tipo_incorrecto()
-    interfaz.mainloop()
-    seleccionar_fecha()

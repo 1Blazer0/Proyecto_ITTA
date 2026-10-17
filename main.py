@@ -28,7 +28,7 @@ while True:
             funciones.guardar_tareas(interfaz.msj_guardar)
         elif eleccion == 5:
             if funciones.destinatario:
-                funciones.enviar_correo(funciones.destinatario, "Lista de tareas", funciones.mensaje_correo())
+                funciones.enviar_correo(funciones.destinatario, funciones.mensaje_correo())
             else:
                 print("No ha registrado un correo electronico.")
         elif eleccion == 6:

@@ -114,26 +114,29 @@ def mensaje_correo():
     for tarea in lista_tarea:
         mensaje += f"- {tarea}\n"
     return mensaje
-def enviar_correo(destinatario=None, asunto=None, mensaje=None):
-    servidor_smtp = "smtp.gmail.com"
-    puerto_smtp = 587
-    msg = multi()
-    remi = "martinniewolski@gmail.com"
-    msg['From'] = remi
-    msg['To'] = destinatario
-    msg['Subject'] = "Lista de tareas"
-    msg.attach(text(mensaje, 'plain'))
-    co = zfzm jzvd vuji hsmd
-    try:
-        server = smtplib.SMTP(servidor_smtp, puerto_smtp)
-        server.starttls()
-        server.login(remi, co)
-        server.send_message(msg)
-        print("Correo enviado exitosamente.")
-    except Exception as e:
-        print(f"Error al enviar el correo: {e}")
-    finally:
-        server.quit()
+def enviar_correo(destinatario=None, mensaje=None):
+    if destinatario:
+        servidor_smtp = "smtp.gmail.com"
+        puerto_smtp = 587
+        msg = multi()
+        remi = "martinniewolski@gmail.com"
+        msg['From'] = remi
+        msg['To'] = destinatario
+        msg['Subject'] = "Lista de tareas"
+        msg.attach(text(mensaje, 'plain'))
+        co = zfzm jzvd vuji hsmd
+        try:
+            server = smtplib.SMTP(servidor_smtp, puerto_smtp)
+            server.starttls()
+            server.login(remi, co)
+            server.send_message(msg)
+            print("Correo enviado exitosamente.")
+        except Exception as e:
+            print(f"Error al enviar el correo: {e}")
+        finally:
+            server.quit()
+    else:
+        print("No se ha proporcionado un correo electronico.")
 def guardar_correo():
     try:
         global destinatario

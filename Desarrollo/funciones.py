@@ -103,27 +103,36 @@ def guardar_lista_diferente(alerta_oportunidades=None,msj_guardado=None):
 def pedir_correo():
     while True:
         global destinatario
-        destinatario = input("Ingrese el correo electronico que desea registrar: ")
-        if "@" in destinatario and "." in destinatario:
+        correo = input("\nIngrese 0 para volver.\nIngrese el correo electronico que desea registrar: ")
+        if correo == "0":
+            break
+        elif "@" in correo and "." in correo:
+            destinatario = correo
             break
         else:
             print("Correo invalido. Intente nuevamente.")
 def mensaje_correo():
-    mensaje = "Su lista de tareas es la siguiente:\n\n"
-    for tarea in lista_tarea:
-        mensaje += f"- {tarea}\n"
-    return mensaje
+    if len(lista_tarea) == 0:
+        return "No hay tareas pendientes."
+    else:
+        contador = 1
+        mensaje = "Su lista de tareas es la siguiente:\n\n"
+        for tarea in lista_tarea:
+            mensaje += f"{contador}- {tarea}\n"
+            contador += 1
+        mensaje += "\nRecuerde que puede agregar, eliminar y guardar tareas en cualquier momento.\n\n¡Que tenga un buen dia!"
+        return mensaje
 def enviar_correo(destinatario=None, mensaje=None):
     if destinatario:
         servidor_smtp = "smtp.gmail.com"
         puerto_smtp = 587
         msg = multi()
-        remi = "martinniewolski@gmail.com"
+        remi = "lista.tareas2026@gmail.com"
         msg['From'] = remi
         msg['To'] = destinatario
         msg['Subject'] = "Lista de tareas"
         msg.attach(text(mensaje, 'plain'))
-        co = "zfzm jzvd vuji hsmd"
+        co = "hhte qyor ikfb jtlc"
         try:
             server = smtplib.SMTP(servidor_smtp, puerto_smtp)
             server.starttls()

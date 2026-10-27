@@ -64,6 +64,11 @@ def cargar_tareas():
                 lista_guardada = lista_tarea.copy()
         print("Tus tareas han sido cargadas exitosamente!")
     except FileNotFoundError:
+            print("No se encontro el archivo de tareas. Se creara uno nuevo al guardar.")
+            lista_tarea = []
+            lista_guardada = []
+    except Exception as e:
+            print(f"Error al cargar las tareas: {e}\nSe creara un archivo nuevo al guardar.")
             lista_tarea = []
             lista_guardada = []
 def guardar_tareas(msj_guardar=None):
@@ -80,7 +85,7 @@ def guardar_lista_diferente(alerta_oportunidades=None,msj_guardado=None):
     oportunidades = 5
     while True:
         guardar = input("Detectamos cambios no guardados. Desearia guardarlos?\n(Y/N): ").lower()
-        if guardar == "y" or guardar == "ye" or guardar == "yes":
+        if guardar == "y" or guardar == "ye" or guardar == "yes" or guardar == "s" or guardar == "si" or guardar == "sí":
             guardar_tareas()
             if msj_guardado:
                 msj_guardado()
@@ -157,6 +162,9 @@ def cargar_correo():
         global destinatario
         with open("correo.txt", "r") as archivo:
             destinatario = json.load(archivo)
+    except FileNotFoundError:
+        print("Puedes configurar un correo electronico en cualquier momento.\n")
+        destinatario = None
     except Exception as e:
         print(f"Error al cargar el correo: {e}")
         destinatario = None
